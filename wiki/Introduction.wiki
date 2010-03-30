@@ -1,7 +1,7 @@
 #summary Introduction, installation and usage
 #labels Featured,Phase-Deploy
 
-= Taurus Backup =
+= INTRODUCTION =
 
 Taurus is a blatently simple backupscript using tar. 
 I'm using it on my own linux datastorage machine.
@@ -16,7 +16,7 @@ It does not store a tar file; the 'repository' is a
 mirror of the source. By default, Taurus uses numbered 
 backups for changed files in the repository.
 
-==INSTALLATION==
+=INSTALLATION=
 
 *requirements*: tar
 
