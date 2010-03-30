@@ -1,4 +1,4 @@
-#summary One- introduction and usage
+#summary Introduction and usage
 #labels Featured,Phase-Deploy
 
 = Introduction =
