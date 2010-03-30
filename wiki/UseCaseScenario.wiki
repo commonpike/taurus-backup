@@ -3,7 +3,7 @@
 *A picture is a 1000 words. *
 
 Below, I will create a backup repository
-of  /home/frank on /mnt/FatDisk/frank. Then I will fiddle with the 
+of  /home/frank on /mnt/fatdisk/frank. Then I will fiddle with the 
 source files and create new backups, restore files from the backup, etc.
 
 
@@ -21,16 +21,16 @@ pike@bootz:~$ tree /home/frank
 
 3 directories, 2 files
 
-pike@bootz:~$ taurus -c /mnt/FatDisk/frank /home/frank
+pike@bootz:~$ taurus -c /mnt/fatdisk/frank /home/frank
 
 Creating a new taurus repository.
 Setting up repository ..Done.
-Run "taurus -u /mnt/FatDisk/frank" to create your first backup.
-See /mnt/FatDisk/frank for more configuration options.
+Run "taurus -u /mnt/fatdisk/frank" to create your first backup.
+See /mnt/fatdisk/frank for more configuration options.
 
-pike@bootz:~$ tree /mnt/FatDisk/frank
+pike@bootz:~$ tree /mnt/fatdisk/frank
 
-/mnt/FatDisk/frank
+/mnt/fatdisk/frank
 |-- data
 |-- taurus.config
 `-- taurus.excludes
@@ -39,21 +39,21 @@ pike@bootz:~$ tree /mnt/FatDisk/frank
 
 }}}
 
-Notice /mnt/FatDisk/frank is still an empty repository. It contains
+Notice /mnt/fatdisk/frank is still an empty repository. It contains
 some default configuration, which you can change before doing 
 your first backup.
 
-"taurus -cu /mnt/FatDisk/frank /home/frank" would have created 
+"taurus -cu /mnt/fatdisk/frank /home/frank" would have created 
 the first backup straight away.
 
 ==UPDATING A REPOSITORY==
 *taurus -u | --update $reposdir*
 
 {{{
-pike@bootz:~$ taurus -u /mnt/FatDisk/frank
+pike@bootz:~$ taurus -u /mnt/fatdisk/frank
 --------
 Tue Mar 30 03:25:20 CEST 2010
-Starting update 4.0K    /mnt/FatDisk/frank
+Starting update 4.0K    /mnt/fatdisk/frank
 --------
 tar: /home/frank/bin: Directory is new
 tar: /home/frank/etc: Directory is new
@@ -67,11 +67,11 @@ tar: Removing leading `/' from member names
 /home/frank/etc/htpasswd
 --------
 Tue Mar 30 03:25:20 CEST 2010
-Finished update 12K     /mnt/FatDisk/frank
+Finished update 12K     /mnt/fatdisk/frank
 --------
 
-pike@bootz:~$ tree /mnt/FatDisk/frank/
-/mnt/FatDisk/frank/
+pike@bootz:~$ tree /mnt/fatdisk/frank/
+/mnt/fatdisk/frank/
 |-- data
 |   `-- home
 |       `-- frank
@@ -96,10 +96,10 @@ Notice taurus has added a snapshot file. The next time you call taurus, it will 
 
 {{{
 pike@bootz:~$ touch /home/frank/etc/htgroup
-pike@bootz:~$ taurus -u /mnt/FatDisk/frank
+pike@bootz:~$ taurus -u /mnt/fatdisk/frank
 --------
 Tue Mar 30 03:30:40 CEST 2010
-Starting update 12K     /mnt/FatDisk/frank
+Starting update 12K     /mnt/fatdisk/frank
 --------
 tar: Removing leading `/' from member names
 /home/frank/
@@ -109,11 +109,11 @@ tar: Removing leading `/' from member names
 /home/frank/etc/htgroup
 --------
 Tue Mar 30 03:30:41 CEST 2010
-Finished update 13K     /mnt/FatDisk/frank
+Finished update 13K     /mnt/fatdisk/frank
 --------
 
-pike@bootz:~$ tree /mnt/FatDisk/frank/
-/mnt/FatDisk/frank/
+pike@bootz:~$ tree /mnt/fatdisk/frank/
+/mnt/fatdisk/frank/
 |-- data
 |   `-- home
 |       `-- frank
@@ -139,10 +139,10 @@ The changed htgroup file is stored in the repository, and the old version moved 
 
 {{{
 pike@bootz:~$ sudo rm -r /home/frank/etc/
-pike@bootz:~$ sudo taurus -u /mnt/FatDisk/frank 
+pike@bootz:~$ sudo taurus -u /mnt/fatdisk/frank 
 --------
 Tue Mar 30 03:52:03 CEST 2010
-Starting update 15K     /mnt/FatDisk/frank
+Starting update 15K     /mnt/fatdisk/frank
 --------
 tar: Removing leading `/' from member names
 /home/frank/
@@ -150,11 +150,11 @@ tar: Removing leading `/' from member names
 /home/frank/public_html/
 --------
 Tue Mar 30 03:52:03 CEST 2010
-Finished update 15K     /mnt/FatDisk/frank
+Finished update 15K     /mnt/fatdisk/frank
 --------
 
-pike@bootz:~$ tree /mnt/FatDisk/frank/
-/mnt/FatDisk/frank/
+pike@bootz:~$ tree /mnt/fatdisk/frank/
+/mnt/fatdisk/frank/
 |-- data
 |   `-- home
 |       `-- frank
@@ -176,11 +176,11 @@ Allthough /home/frank/etc/ is deleted, nothing changed in the repository.
 *taurus -r | --restore $reposdir $restoredir*
 
 {{{
-pike@bootz:~$ taurus -r /mnt/FatDisk/frank /home/frank/etc
+pike@bootz:~$ taurus -r /mnt/fatdisk/frank /home/frank/etc
 
 Restore will recursively copy files from the backup repository
 back to the place they supposedly came from:
-From:   /mnt/FatDisk/frank/data/home/frank/etc
+From:   /mnt/fatdisk/frank/data/home/frank/etc
 To:     /home/frank/etc
 This has a few options. Please read carefully:
 
@@ -191,12 +191,12 @@ Create numbered backups when overwriting files [Y/n]? y
 Use force when needed [Y/n]? y
 
 Thanks. Restore will start now ...
-`/mnt/FatDisk/frank/data/home/frank/etc' -> `/home/frank/etc'
-`/mnt/FatDisk/frank/data/home/frank/etc/htgroup' ->
+`/mnt/fatdisk/frank/data/home/frank/etc' -> `/home/frank/etc'
+`/mnt/fatdisk/frank/data/home/frank/etc/htgroup' ->
 `/home/frank/etc/htgroup'
-`/mnt/FatDisk/frank/data/home/frank/etc/htgroup.~1~' ->
+`/mnt/fatdisk/frank/data/home/frank/etc/htgroup.~1~' ->
 `/home/frank/etc/htgroup.~1~'
-`/mnt/FatDisk/frank/data/home/frank/etc/htpasswd' ->
+`/mnt/fatdisk/frank/data/home/frank/etc/htpasswd' ->
 `/home/frank/etc/htpasswd'
 
 ... Done.
@@ -222,12 +222,12 @@ You can also choose to restore the complete /home/frank. In this case, taurus wo
 *taurus -p | --purge $reposdir*
 
 {{{
-pike@bootz:~$ taurus -p /mnt/FatDisk/frank/
-Are you sure you want to purge the repository /mnt/FatDisk/frank/ ?
+pike@bootz:~$ taurus -p /mnt/fatdisk/frank/
+Are you sure you want to purge the repository /mnt/fatdisk/frank/ ?
 This will basicly erase the backup and create a new one (yes/no): yes
 --------
 Tue Mar 30 03:58:27 CEST 2010
-Starting update 4.0K    /mnt/FatDisk/frank/
+Starting update 4.0K    /mnt/fatdisk/frank/
 --------
 tar: /home/frank/bin: Directory is new
 tar: /home/frank/etc: Directory is new
@@ -241,10 +241,10 @@ tar: Removing leading `/' from member names
 /home/frank/etc/htpasswd
 --------
 Tue Mar 30 03:58:27 CEST 2010
-Finished update 12K     /mnt/FatDisk/frank/
+Finished update 12K     /mnt/fatdisk/frank/
 --------
-pike@bootz:~$ tree /mnt/FatDisk/frank/
-/mnt/FatDisk/frank/
+pike@bootz:~$ tree /mnt/fatdisk/frank/
+/mnt/fatdisk/frank/
 |-- data
 |   `-- home
 |       `-- frank
@@ -267,7 +267,7 @@ This may be smarter in the future... the purpose of 'purge' is to minimize your 
 *rm -r  $reposdir*
 
 {{{
-pike@bootz:~$ rm -r /mnt/FatDisk/frank/
+pike@bootz:~$ rm -r /mnt/fatdisk/frank/
 
 }}}
 
