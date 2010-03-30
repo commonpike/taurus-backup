@@ -192,12 +192,9 @@ Use force when needed [Y/n]? y
 
 Thanks. Restore will start now ...
 `/mnt/fatdisk/frank/data/home/frank/etc' -> `/home/frank/etc'
-`/mnt/fatdisk/frank/data/home/frank/etc/htgroup' ->
-`/home/frank/etc/htgroup'
-`/mnt/fatdisk/frank/data/home/frank/etc/htgroup.~1~' ->
-`/home/frank/etc/htgroup.~1~'
-`/mnt/fatdisk/frank/data/home/frank/etc/htpasswd' ->
-`/home/frank/etc/htpasswd'
+`/mnt/fatdisk/frank/data/home/frank/etc/htgroup' -> `/home/frank/etc/htgroup'
+`/mnt/fatdisk/frank/data/home/frank/etc/htgroup.~1~' -> `/home/frank/etc/htgroup.~1~'
+`/mnt/fatdisk/frank/data/home/frank/etc/htpasswd' -> `/home/frank/etc/htpasswd'
 
 ... Done.
 
