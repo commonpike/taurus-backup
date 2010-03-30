@@ -1,7 +1,7 @@
 #summary Feature requests and known bugs
 #labels Featured,bugs,todo
 
-= Bugs/TODO =
+= Bugs/Feature requests/Todo =
 
 Version is 0.5. 
 
