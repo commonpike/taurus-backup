@@ -1,7 +1,7 @@
 #summary Introduction and usage
 #labels Featured,Phase-Deploy
 
-= Introduction =
+= Taurus Backup =
 
 Taurus is a blatently simple backupscript using tar. 
 I'm using it on my own linux datastorage machine.
