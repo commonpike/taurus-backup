@@ -1,4 +1,4 @@
-#summary a use case example
+#summary a use case scenario
 #labels Featured,howto
 
 = Introduction =
@@ -45,7 +45,8 @@ Notice /mnt/FatDisk/frank is still an empty repository. It contains
 some default configuration, which you can change before doing 
 your first backup.
 
-*taurus -cu $reposdir* would have created a first backup straight away.
+"taurus -cu /mnt/FatDisk/frank /home/frank" would have created 
+the first backup straight away.
 
 ==UPDATING A REPOSITORY==
 *taurus -u | --update $reposdir*
@@ -210,11 +211,14 @@ pike@bootz:~$ tree /home/frank/etc/
 
 }}}
 
-The whole /home/frank/etc dir has been restored. This includes all older versions of files, which is a bit of a mess if you have numbered backups. 
+The whole /home/frank/etc dir has been restored. This includes all older versions of files, which is a bit of a mess if you have numbered backups. Especially, if you answer to use numbered backups on the prompt, and you have numbered backups in the repository, it may be quite confusing which number refers to what. The main file however will always be the most current one.
 
-Alternatively, you could have chosen to restore only one file. If you want to restore an older version of a specific file, you would have needed to do this by hand; go into the repository and find the version you want to restore.
+Alternatively, you could have chosen to restore only one file. 
 
-Alternatively, you could have chosen to restore the complete /home/frank. The script would have noticed nothing changed but /home/frank/etc and only restored that dir, in this case.
+If you want to restore an older version of a specific file, you need to do this by hand;
+ go into the repository and find the version you want to restore.
+
+You can also choose to restore the complete /home/frank. In this case, taurus would have noticed nothing changed but /home/frank/etc and only restored that dir.
 
 ==PURGING THE REPOSITORY==
 *taurus -p | --purge $reposdir*
@@ -259,6 +263,7 @@ pike@bootz:~$ tree /mnt/FatDisk/frank/
 
 }}}
 
+This may be smarter in the future... the purpose of 'purge' is to minimize your repository size. Purge may be used in cron scripts, so should not be too interactive.
 
 ==DELETING THE REPOSITORY==
 *rm -r  $reposdir*
@@ -268,4 +273,4 @@ pike@bootz:~$ rm -r /mnt/FatDisk/frank/
 
 }}}
 
-doh :-)
+doh :-) everything is in the reposdir, you can safely trash it.
