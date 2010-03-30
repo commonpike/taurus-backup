@@ -1,5 +1,4 @@
 #labels Featured,howto
-
 = USE CASE SCENARIO =
 *A picture is a 1000 words. *
 
@@ -215,7 +214,7 @@ The whole /home/frank/etc dir has been restored. This includes all older version
 Alternatively, you could have chosen to restore only one file. 
 
 If you want to restore an older version of a specific file, you need to do this by hand;
- go into the repository and find the version you want to restore.
+go into the repository and find the version you want to restore.
 
 You can also choose to restore the complete /home/frank. In this case, taurus would have noticed nothing changed but /home/frank/etc and only restored that dir.
 
