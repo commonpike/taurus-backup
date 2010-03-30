@@ -1,7 +1,6 @@
-#summary a use case scenario
 #labels Featured,howto
 
-= Introduction =
+= USE CASE SCENARIO =
 *A picture is a 1000 words. *
 
 Below, I will create a backup repository
