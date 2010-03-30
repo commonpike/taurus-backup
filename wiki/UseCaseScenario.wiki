@@ -92,7 +92,7 @@ pike@bootz:~$ tree /mnt/fatdisk/frank/
 
 And there you are - your backup is in /data - which is configured in taurus.config.
 
-Notice taurus has added a snapshot file. The next time you call taurus, it will only save changes relative to the created snapshot. 
+Notice taurus has added a snapshot file. The next time you call "taurus -u", it will only update changed files relative to the created snapshot. 
 
 ===Changing one file and updating ===
 
