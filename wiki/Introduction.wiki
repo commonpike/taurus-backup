@@ -23,6 +23,7 @@ backups for changed files in the repository.
   * download the tarball
   * cp -a ./usr/local/bin/taurus  /usr/local/bin
   * cp -a ./usr/local/share/taurus  /usr/local/share
+  * fix permissions ... 
   * enjoy
 
 =USAGE=
@@ -30,22 +31,22 @@ backups for changed files in the repository.
 Usage: taurus -chprtuv (reposdir) [sourcepath]
 
 *Create a repository*:
-taurus -c | --create (reposdir) [sourcedir] 
+`taurus -c | --create (reposdir) [sourcedir]`
 
 *Update a repository*:
-taurus -u | --update (reposdir)
+`taurus -u | --update (reposdir)`
 
 *Restore files from a repository*:
-taurus -r | --restore (reposdir) (restorepath)
+`taurus -r | --restore (reposdir) (restorepath)`
 
 *Purge a repository*:
-taurus -p | --purge (reposdir) 
+`taurus -p | --purge (reposdir) `
 
 *Test an update*:
-taurus -t | --test-update (reposdir)
+`taurus -t | --test-update (reposdir)`
 
 *Help*:
-taurus -h | --help
+`taurus -h | --help`
 
 *Version*:
-taurus -v | --version
+`taurus -v | --version`
