@@ -1,4 +1,6 @@
+#summary Example usage
 #labels Featured,howto
+
 = USE CASE SCENARIO =
 *A picture is a 1000 words. *
 
