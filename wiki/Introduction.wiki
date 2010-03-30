@@ -28,7 +28,7 @@ backups for changed files in the repository.
 
 =USAGE=
 
-Usage: taurus -chprtuv (reposdir) [sourcepath]
+Usage: `taurus -chprtuv (reposdir) [sourcepath]`
 
 *Create a repository*:
 `taurus -c | --create (reposdir) [sourcedir]`
