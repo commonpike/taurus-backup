@@ -9,6 +9,7 @@ I'm the only person in the world using it. Your milage *will* vary.
 
 Use at your own risk. Always make a backup before .. making a backup :-D
 
+== Missing features / planned ==
 
  * script should prompt for the restoredir if none is given 
  * a .deb would be nice, and handle exec/read permissions
