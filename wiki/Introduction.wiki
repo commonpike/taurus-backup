@@ -1,4 +1,4 @@
-#summary Introduction and usage
+#summary Introduction, installation and usage
 #labels Featured,Phase-Deploy
 
 = Taurus Backup =
@@ -16,6 +16,14 @@ It does not store a tar file; the 'repository' is a
 mirror of the source. By default, Taurus uses numbered 
 backups for changed files in the repository.
 
+==INSTALLATION==
+
+*requirements*: tar
+
+  * download the tarball
+  * cp -a ./usr/local/bin/taurus  /usr/local/bin
+  * cp -a ./usr/local/share/taurus  /usr/local/share
+  * enjoy
 
 =USAGE=
 
@@ -41,12 +49,3 @@ taurus -h | --help
 
 *Version*:
 taurus -v | --version
-
-=================
-INSTALL
-=================
-
-* download the tarball
-* cp -a ./usr/local/bin/taurus  /usr/local/bin
-* cp -a ./usr/local/share/taurus  /usr/local/share
-* enjoy
