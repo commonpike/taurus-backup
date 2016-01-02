@@ -1,0 +1,270 @@
+# USE CASE SCENARIO #
+**A picture is a 1000 words.**
+
+Below, I will create a backup repository
+of  /home/frank on /mnt/fatdisk/frank. Then I will fiddle with the
+source files and create new backups, restore files from the backup, etc.
+
+
+## CREATE A REPOSITORY ##
+**taurus -c | --create $reposdir ($sourcedir)**
+
+```
+pike@bootz:~$ tree /home/frank
+/home/frank
+|-- bin
+|-- etc
+|   |-- htgroup
+|   `-- htpasswd
+`-- public_html
+
+3 directories, 2 files
+
+pike@bootz:~$ taurus -c /mnt/fatdisk/frank /home/frank
+
+Creating a new taurus repository.
+Setting up repository ..Done.
+Run "taurus -u /mnt/fatdisk/frank" to create your first backup.
+See /mnt/fatdisk/frank for more configuration options.
+
+pike@bootz:~$ tree /mnt/fatdisk/frank
+
+/mnt/fatdisk/frank
+|-- data
+|-- taurus.config
+`-- taurus.excludes
+
+1 directory, 2 files
+
+```
+
+Notice /mnt/fatdisk/frank is still an empty repository. It contains
+some default configuration, which you can change before doing
+your first backup.
+
+"taurus -cu /mnt/fatdisk/frank /home/frank" would have created
+the first backup straight away.
+
+## UPDATING A REPOSITORY ##
+**taurus -u | --update $reposdir**
+
+```
+pike@bootz:~$ taurus -u /mnt/fatdisk/frank
+--------
+Tue Mar 30 03:25:20 CEST 2010
+Starting update 4.0K    /mnt/fatdisk/frank
+--------
+tar: /home/frank/bin: Directory is new
+tar: /home/frank/etc: Directory is new
+tar: /home/frank/public_html: Directory is new
+tar: Removing leading `/' from member names
+/home/frank/
+/home/frank/bin/
+/home/frank/etc/
+/home/frank/public_html/
+/home/frank/etc/htgroup
+/home/frank/etc/htpasswd
+--------
+Tue Mar 30 03:25:20 CEST 2010
+Finished update 12K     /mnt/fatdisk/frank
+--------
+
+pike@bootz:~$ tree /mnt/fatdisk/frank/
+/mnt/fatdisk/frank/
+|-- data
+|   `-- home
+|       `-- frank
+|           |-- bin
+|           |-- etc
+|           |   |-- htgroup
+|           |   `-- htpasswd
+|           `-- public_html
+|-- taurus.config
+|-- taurus.excludes
+`-- taurus.snapshot
+
+6 directories, 6 files
+
+```
+
+And there you are - your backup is in /data - which is configured in taurus.config.
+
+Notice taurus has added a snapshot file. The next time you call "taurus -u", it will only update changed files relative to the created snapshot.
+
+### Changing one file and updating ###
+
+```
+pike@bootz:~$ touch /home/frank/etc/htgroup
+pike@bootz:~$ taurus -u /mnt/fatdisk/frank
+--------
+Tue Mar 30 03:30:40 CEST 2010
+Starting update 12K     /mnt/fatdisk/frank
+--------
+tar: Removing leading `/' from member names
+/home/frank/
+/home/frank/bin/
+/home/frank/etc/
+/home/frank/public_html/
+/home/frank/etc/htgroup
+--------
+Tue Mar 30 03:30:41 CEST 2010
+Finished update 13K     /mnt/fatdisk/frank
+--------
+
+pike@bootz:~$ tree /mnt/fatdisk/frank/
+/mnt/fatdisk/frank/
+|-- data
+|   `-- home
+|       `-- frank
+|           |-- bin
+|           |-- etc
+|           |   |-- htgroup
+|           |   |-- htgroup.~1~
+|           |   `-- htpasswd
+|           `-- public_html
+|-- taurus.config
+|-- taurus.excludes
+`-- taurus.snapshot
+
+6 directories, 6 files
+
+```
+
+The changed htgroup file is stored in the repository, and the old version moved to a numbered backup - which is configured in taurus.config. Please note that numbered backups can create huge repositories (if you have a lot of changes in big files). You could change this to "simple" (which create simple ~ suffix backups) or remove the backup setting completely.
+
+
+
+### Deleting a dir (and updating) ###
+
+```
+pike@bootz:~$ sudo rm -r /home/frank/etc/
+pike@bootz:~$ sudo taurus -u /mnt/fatdisk/frank 
+--------
+Tue Mar 30 03:52:03 CEST 2010
+Starting update 15K     /mnt/fatdisk/frank
+--------
+tar: Removing leading `/' from member names
+/home/frank/
+/home/frank/bin/
+/home/frank/public_html/
+--------
+Tue Mar 30 03:52:03 CEST 2010
+Finished update 15K     /mnt/fatdisk/frank
+--------
+
+pike@bootz:~$ tree /mnt/fatdisk/frank/
+/mnt/fatdisk/frank/
+|-- data
+|   `-- home
+|       `-- frank
+|           |-- bin
+|           |-- etc
+|           |   |-- htgroup
+|           |   |-- htgroup.~1~
+|           |   `-- htpasswd
+|           `-- public_html
+|-- taurus.config
+|-- taurus.excludes
+`-- taurus.snapshot
+
+```
+
+Allthough /home/frank/etc/ is deleted, nothing changed in the repository.
+
+## RESTORING A DIR OR FILE ##
+**taurus -r | --restore $reposdir $restoredir**
+
+```
+pike@bootz:~$ taurus -r /mnt/fatdisk/frank /home/frank/etc
+
+Restore will recursively copy files from the backup repository
+back to the place they supposedly came from:
+From:   /mnt/fatdisk/frank/data/home/frank/etc
+To:     /home/frank/etc
+This has a few options. Please read carefully:
+
+Restore interactive [Y/n]? y
+Restore verbose [Y/n]? y
+Restore only missing or old files [Y/n]? y
+Create numbered backups when overwriting files [Y/n]? y
+Use force when needed [Y/n]? y
+
+Thanks. Restore will start now ...
+`/mnt/fatdisk/frank/data/home/frank/etc' -> `/home/frank/etc'
+`/mnt/fatdisk/frank/data/home/frank/etc/htgroup' -> `/home/frank/etc/htgroup'
+`/mnt/fatdisk/frank/data/home/frank/etc/htgroup.~1~' -> `/home/frank/etc/htgroup.~1~'
+`/mnt/fatdisk/frank/data/home/frank/etc/htpasswd' -> `/home/frank/etc/htpasswd'
+
+... Done.
+
+pike@bootz:~$ tree /home/frank/etc/
+/home/frank/etc/
+|-- htgroup
+|-- htgroup.~1~
+`-- htpasswd
+
+```
+
+The whole /home/frank/etc dir has been restored. This includes all older versions of files, which is a bit of a mess if you have numbered backups. Especially, if you answer to use numbered backups on the prompt, and you have numbered backups in the repository, it may be quite confusing which number refers to what. The main file however will always be the most current one.
+
+Alternatively, you could have chosen to restore only one file.
+
+If you want to restore an older version of a specific file, you need to do this by hand;
+go into the repository and find the version you want to restore.
+
+You can also choose to restore the complete /home/frank. In this case, taurus would have noticed nothing changed but /home/frank/etc and only restored that dir.
+
+## PURGING THE REPOSITORY ##
+**taurus -p | --purge $reposdir**
+
+```
+pike@bootz:~$ taurus -p /mnt/fatdisk/frank/
+Are you sure you want to purge the repository /mnt/fatdisk/frank/ ?
+This will basicly erase the backup and create a new one (yes/no): yes
+--------
+Tue Mar 30 03:58:27 CEST 2010
+Starting update 4.0K    /mnt/fatdisk/frank/
+--------
+tar: /home/frank/bin: Directory is new
+tar: /home/frank/etc: Directory is new
+tar: /home/frank/public_html: Directory is new
+tar: Removing leading `/' from member names
+/home/frank/
+/home/frank/bin/
+/home/frank/etc/
+/home/frank/public_html/
+/home/frank/etc/htgroup
+/home/frank/etc/htpasswd
+--------
+Tue Mar 30 03:58:27 CEST 2010
+Finished update 12K     /mnt/fatdisk/frank/
+--------
+pike@bootz:~$ tree /mnt/fatdisk/frank/
+/mnt/fatdisk/frank/
+|-- data
+|   `-- home
+|       `-- frank
+|           |-- bin
+|           |-- etc
+|           |   |-- htgroup
+|           |   `-- htpasswd
+|           `-- public_html
+|-- taurus.config
+|-- taurus.excludes
+`-- taurus.snapshot
+
+6 directories, 5 files
+
+```
+
+This may be smarter in the future... the purpose of 'purge' is to minimize your repository size. Purge may be used in cron scripts, so should not be too interactive.
+
+## DELETING THE REPOSITORY ##
+**rm -r  $reposdir**
+
+```
+pike@bootz:~$ rm -r /mnt/fatdisk/frank/
+
+```
+
+doh :-) everything is in the reposdir, you can safely trash it.
